@@ -28,3 +28,6 @@ pyethereum/todo.txt
 pyethereum/monkeypatch.py
 .eggs
 .cache
+.vscode
+*.sol
+
