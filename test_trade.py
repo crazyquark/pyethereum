@@ -14,10 +14,21 @@ print CONTRACT_UNDER_TEST
 
 state = tester.state()
 
+buyer = 0x123456
+seller = 0x654321
+buyerDetails = 'NoBuyer'
+sellerDetails = 'NoSeller'
+
+print 'Testing constructor...'
 contract = state.abi_contract(
     None,
     path=CONTRACT_UNDER_TEST,
-    language='solidity'
+    language='solidity',
+    constructor_parameters=[buyer, seller, buyerDetails, sellerDetails]
 )
 
-print contract
+parties = contract.getParties()
+assert parties[0] == '0000000000000000000000000000000000123456'
+assert parties[1] == 'NoBuyer'
+assert parties[2] == '0000000000000000000000000000000000654321'
+assert parties[3] == 'NoSeller'
